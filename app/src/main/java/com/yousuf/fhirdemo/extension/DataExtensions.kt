@@ -10,6 +10,62 @@ fun Patient.toDisplayString():String{
     }
 }
 
+fun Patient.getDisplayName():String{
+    return if (name.isNotEmpty()){
+        name[0].givenAsSingleString
+    }else{
+        "null"
+    }
+}
+
+fun Patient.getGivenName():String{
+    return if (name.isNotEmpty() && name[0].given.isNotEmpty()){
+        name[0].given[0].value ?: ""
+    }else{
+        "null"
+    }
+}
+
+fun Patient.getFamilyName():String{
+    return if (name.isNotEmpty()){
+        name[0].family ?: ""
+    }else{
+        "null"
+    }
+}
+
+fun Patient.getCity() : String{
+    return if (address.isNotEmpty()){
+        address[0].city ?: ""
+    }else{
+        ""
+    }
+}
+
+fun Patient.getState() : String{
+    return if (address.isNotEmpty()){
+        address[0].state ?: ""
+    }else{
+        ""
+    }
+}
+
+fun Patient.getCountry() : String{
+    return if (address.isNotEmpty()){
+        address[0].country ?: ""
+    }else{
+        ""
+    }
+}
+
+fun Patient.getDisplayAddress() : String{
+    return if (address.isNotEmpty()){
+        address[0].city + ", " + address[0].state + ", " + address[0].country
+    }else{
+        ""
+    }
+}
+
 fun Patient.getLogInfo() : String{
     val sb = StringBuilder()
     sb.append("Url Id:").append(id).append("\n")
