@@ -7,6 +7,15 @@ import ca.uhn.fhir.rest.client.api.IGenericClient
 import ca.uhn.fhir.rest.client.api.ServerValidationModeEnum
 import com.yousuf.fhirdemo.config.FhirConfig
 
+/**
+ * Created by Android Studio.
+ * User:  Yousuf
+ * Email:
+ * Date:  31/5/22
+ * To change this template use File | Settings | File and Code Templates.
+ *
+ */
+
 class RestClient {
 
     companion object{
