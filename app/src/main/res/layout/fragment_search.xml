@@ -7,40 +7,61 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.SearchFragment">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/purple_500">
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_margin="8dp" />
-        </FrameLayout>
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:indeterminate="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            tools:visibility="visible"/>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:itemCount="5"
-            tools:listitem="@layout/item_patient"/>
+            android:orientation="vertical"
+            tools:context=".ui.SearchFragment">
 
-    </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp">
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:layout_margin="8dp" />
+            </FrameLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:indeterminate="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                tools:visibility="visible"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_patient"/>
+
+        </LinearLayout>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_input_add"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

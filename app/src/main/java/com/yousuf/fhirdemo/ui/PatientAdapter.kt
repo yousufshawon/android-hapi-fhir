@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.yousuf.fhirdemo.databinding.ItemPatientBinding
 import org.hl7.fhir.r4.model.Patient
 
-class PatientAdapter : ListAdapter<Patient, PatientViewHolder>(PatientItemDiffCallback()) {
+class PatientAdapter(private val onItemClicked : (Patient) -> Unit) : ListAdapter<Patient, PatientViewHolder>(PatientItemDiffCallback()) {
 
     private var inflater : LayoutInflater? = null
 
@@ -29,7 +29,7 @@ class PatientAdapter : ListAdapter<Patient, PatientViewHolder>(PatientItemDiffCa
     }
 
     override fun onBindViewHolder(holder: PatientViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], onItemClicked)
     }
 
     private fun getLayoutInflater(context:Context) : LayoutInflater{

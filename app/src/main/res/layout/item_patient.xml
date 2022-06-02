@@ -20,7 +20,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="18sp"
-            android:padding="12dp"
+            android:padding="16dp"
             tools:text="John Doe"
             />
 

@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.yousuf.fhirdemo.data.TaskStatus
 import com.yousuf.fhirdemo.extension.getLogInfo
 import com.yousuf.fhirdemo.network.RestClient
 import com.yousuf.fhirdemo.repository.SearchRepository
@@ -23,13 +24,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _patientListMutableLiveData = MutableLiveData<List<Patient>>(listOf())
     val patientListLiveData : LiveData<List<Patient>> get() = _patientListMutableLiveData
 
-    private val _loading = MutableLiveData(false)
-    val loading : LiveData<Boolean> get() = _loading
+    private val _searchStatus = MutableLiveData<TaskStatus<List<Patient>>>(TaskStatus.Idle)
+    val searchStatus : LiveData<TaskStatus<List<Patient>>> get() = _searchStatus
 
     private val searchUseCase = SearchUseCase(SearchRepository(RestClient.getClient()))
     private val mainScope = CoroutineScope(Dispatchers.Main.immediate)
 
     init {
+        onSearchAction()
     }
 
     fun forceInit(){
@@ -38,12 +40,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun onSearchAction(keyword: String = ""){
         viewModelScope.launch {
-            _loading.value = true
-            val resList = searchPatientWithAddress(keyword)
-            _patientList.clear()
-            _patientList.addAll(resList)
-            _patientListMutableLiveData.value = resList
-            _loading.value = false
+            try {
+                _searchStatus.value = TaskStatus.Running
+                val resList = searchPatientWithAddress(keyword)
+                _patientList.clear()
+                _patientList.addAll(resList)
+                _patientListMutableLiveData.value = resList
+                _searchStatus.value = TaskStatus.Finished(resList)
+            }catch (ex:Exception){
+                Timber.e("Exception: ${ex.message ?: ex.javaClass.simpleName}")
+                _searchStatus.value = TaskStatus.Error(ex, "Failed to get patient list")
+            }
+
         }
     }
 

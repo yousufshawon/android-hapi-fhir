@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.observation.AddObservationFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ecg Data"/>
+
+        <TextView
+            android:id="@+id/tvEcgData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:lines="12"
+            android:maxLines="12"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="true"
+            android:background="@drawable/border_black"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUpload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Upload"/>
+
+    </LinearLayout>
+</layout>

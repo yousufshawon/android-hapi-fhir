@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.yousuf.fhirdemo.ui.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_addPatientFragment"
+            app:destination="@id/addPatientFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_patientDetailsFragment"
+            app:destination="@id/patientDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPatientFragment"
+        android:name="com.yousuf.fhirdemo.ui.add.AddPatientFragment"
+        android:label="AddPatientFragment" />
+    <fragment
+        android:id="@+id/patientDetailsFragment"
+        android:name="com.yousuf.fhirdemo.ui.details.PatientDetailsFragment"
+        android:label="PatientDetailsFragment" >
+        <argument
+            android:name="patientId"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_patientDetailsFragment_to_patientEditFragment"
+            app:destination="@id/patientEditFragment" />
+        <action
+            android:id="@+id/action_patientDetailsFragment_to_addObservationFragment"
+            app:destination="@id/addObservationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/patientEditFragment"
+        android:name="com.yousuf.fhirdemo.ui.edit.PatientEditFragment"
+        android:label="PatientEditFragment" >
+        <argument
+            android:name="patientId"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
+    <fragment
+        android:id="@+id/addObservationFragment"
+        android:name="com.yousuf.fhirdemo.ui.observation.AddObservationFragment"
+        android:label="AddObservationFragment" >
+        <argument
+            android:name="patientId"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
+</navigation>
