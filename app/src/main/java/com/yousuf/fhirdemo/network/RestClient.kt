@@ -10,9 +10,9 @@ import com.yousuf.fhirdemo.config.FhirConfig
 class RestClient {
 
     companion object{
-        private val ctx: FhirContext? = null
-        private val client: IGenericClient? = null
-        private val parser: IParser? = null
+        private var ctx: FhirContext? = null
+        private var client: IGenericClient? = null
+        private var parser: IParser? = null
         private const val socketTimeOut = 20 * 1000
         private const val connectionTimeOut = 20 * 1000
 
@@ -37,12 +37,28 @@ class RestClient {
                 // timeout config
                 restfulClientFactory.socketTimeout = socketTimeOut
                 restfulClientFactory.connectTimeout = connectionTimeOut
+
+            }.also {
+                ctx = it
             }
+
             return fhirContext
         }
 
         private fun createClient() : IGenericClient{
-            return getContext().newRestfulGenericClient(FhirConfig.SERVER_URL_SERVER_FIRE_LY)
+            return getContext().newRestfulGenericClient(FhirConfig.SERVER_URL_SERVER_FIRE_LY).also {
+                client = it
+            }
+        }
+
+        public fun getParser():IParser {
+            return parser ?: createParser()
+        }
+
+        private fun createParser():IParser{
+            return getContext().newJsonParser().setPrettyPrint(true).also {
+                parser = it
+            }
         }
     }
 }
