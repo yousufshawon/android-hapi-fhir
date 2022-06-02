@@ -8,19 +8,23 @@ import com.yousuf.fhirdemo.repository.SearchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.hl7.fhir.r4.model.Patient
-import timber.log.Timber
+
+/**
+ * Created by Android Studio.
+ * User:  Yousuf
+ * Email:
+ * Date:  31/5/22
+ * To change this template use File | Settings | File and Code Templates.
+ *
+ */
+
 
 class SearchUseCase(private val searchRepository: SearchRepository) {
 
     suspend fun searchByAddress(keyword:String) : List<Patient>{
         return withContext(Dispatchers.IO){
-            try {
-                val bundle = searchRepository.search(getAddressSearchCriteria(keyword))
-                BundleUtil.toListOfResourcesOfType(RestClient.getContext(), bundle, Patient::class.java )
-            }catch (e:Exception){
-                Timber.e("Exception: ${e.message}")
-                listOf()
-            }
+            val bundle = searchRepository.search(getAddressSearchCriteria(keyword))
+            BundleUtil.toListOfResourcesOfType(RestClient.getContext(), bundle, Patient::class.java )
         }
 
     }
