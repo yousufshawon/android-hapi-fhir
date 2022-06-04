@@ -29,13 +29,13 @@ object DataGenerator {
         fun getEcgObservation(patientId:String, ecgData:String): Observation {
 
             val ekgObservation = Observation()
-            ekgObservation.id = "Observation/ekg-$patientId"
+            ekgObservation.id = UUID.randomUUID().toString()
             ekgObservation.status = Observation.ObservationStatus.FINAL
             ekgObservation.effective = DateTimeType.now()
 
             val ekgCode = Coding()
                 .setSystem("unknown")
-                .setCode("131328")
+                .setCode(ObservationCode.ecgCode)
                 .setDisplay("MDC_ECG_ELEC_POTL")
 
             ekgObservation.code.addCoding(ekgCode)

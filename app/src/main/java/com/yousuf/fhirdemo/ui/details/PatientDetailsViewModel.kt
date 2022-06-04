@@ -34,9 +34,6 @@ class PatientDetailsViewModel(application: Application) : AndroidViewModel(appli
     private val _detailsStatus = MutableLiveData<TaskStatus<Patient>>()
     val detailsStatus: LiveData<TaskStatus<Patient>> get() = _detailsStatus
 
-    private val _ecgData = MutableLiveData("...")
-    val ecgData : LiveData<String> get() = _ecgData
-
 
     fun loadPatientDetails(patientId: String) {
         viewModelScope.launch {
@@ -51,16 +48,4 @@ class PatientDetailsViewModel(application: Application) : AndroidViewModel(appli
         }
     }
 
-    fun loadObservation(observationId: String) {
-        viewModelScope.launch {
-            try {
-                val observation = patientDetailsUseCase.getObservation(observationId)
-                val observationString = RestClient.getParser().encodeResourceToString(observation)
-                _ecgData.value = observationString
-            }catch (ex:Exception){
-                _ecgData.value = ex.message ?: ex::class.java.simpleName
-            }
-
-        }
-    }
 }

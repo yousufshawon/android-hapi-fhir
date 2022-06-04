@@ -55,7 +55,7 @@ class RestClient {
         }
 
         private fun createClient() : IGenericClient{
-            return getContext().newRestfulGenericClient(FhirConfig.SERVER_URL_SERVER_FIRE_LY).also {
+            return getContext().newRestfulGenericClient(FhirConfig.SERVER_URL_SERVER_FIRE_LY_R4).also {
                 client = it
             }
         }

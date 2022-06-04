@@ -14,7 +14,7 @@ fun Patient.getDisplayName():String{
     return if (name.isNotEmpty()){
         name[0].givenAsSingleString
     }else{
-        "null"
+        ""
     }
 }
 
@@ -22,7 +22,7 @@ fun Patient.getGivenName():String{
     return if (name.isNotEmpty() && name[0].given.isNotEmpty()){
         name[0].given[0].value ?: ""
     }else{
-        "null"
+        ""
     }
 }
 
@@ -30,7 +30,7 @@ fun Patient.getFamilyName():String{
     return if (name.isNotEmpty()){
         name[0].family ?: ""
     }else{
-        "null"
+        ""
     }
 }
 
